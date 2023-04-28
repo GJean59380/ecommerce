@@ -26,6 +26,13 @@ class Order
     #[ORM\ManyToMany(targetEntity: 'App\Entity\Product')]
     private Collection $products;
 
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user_id = null;
+
+    #[ORM\Column]
+    private ?bool $status = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -80,6 +87,30 @@ class Order
     public function removeProduct(product $product): self
     {
         $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

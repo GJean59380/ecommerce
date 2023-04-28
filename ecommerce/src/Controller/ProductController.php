@@ -8,10 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'app_product')]
+    #[Route('api/products', name: 'app_products')]
     public function index(EntityManagerInterface $em): Response
     {
         $productRepo = $em->getRepository(Product::class);
@@ -22,7 +23,8 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/product/{id}', name: 'app_product')]
+
+    #[Route('api/products/{id}', name: 'app_product_id')]
     public function product(Request $request, $id, EntityManagerInterface $em): Response
     {
         $product = $em->getRepository(Product::class)->find($id);

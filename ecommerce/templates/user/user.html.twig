@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ user.firstname }}{% endblock %}
+
+{% block body %}
+    <h1>Bonjour {{ user.firstname }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.login) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email) }}
+        <button type="submit" class="btn">Change infos !</button>
+    {{ form_end(form) }}
+{% endblock %}

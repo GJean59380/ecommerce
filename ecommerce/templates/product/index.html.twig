@@ -4,21 +4,144 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: Verdana, sans-serif;
+    }
+    #example-wrapper {
+        width: 100%!important;
+        font: 18px/1.5 sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .example-wrapper {
+        padding-top: 60px;
+    }
+    h1 {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+        z-index: 999;
+        color: white;
+        font-size: 24px;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .navbar {
+        width: 100%;
+        background-color: #78a0b3;
+    }
+    .navbar ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .navbar ul li{
+        list-style-type: none;
+    }
+    .navbar ul li a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        line-height: 50px;
+    }
+    .row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    .row td {
+        min-width: 25%;
+    }
+    .row a {
+        text-decoration: none;
+        color: black;
+    }
+    .row img {
+        margin-right: 15px;
+        max-width: 100px;
+    }
+    #tableau {
+        width: 100%;
+        padding: 0 40px;
+    }
+    tbody {
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    .sorting_1 {
+        display: flex;
+        justify-content: flex-end;
+    }
 </style>
-
+<header>
+    <div class="navbar">
+        <ul>
+            <h1>Hello {{ controller_name }}!</h1>
+            <li><a href="">HOME</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="">Profile</a></li>
+        </ul>
+    </div>
+</header>
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/Augustrain/Bureau/epitech/T-WEB-600-LIL-6-1-ecommerce-lucas.redjaimia/ecommerce/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/Augustrain/Bureau/epitech/T-WEB-600-LIL-6-1-ecommerce-lucas.redjaimia/ecommerce/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
+    <table id="tableau">
+        <thead>
+            <tr>
+                <th class="">Logo</th>
+                <th class="">Nom</th>
+                <th class="">Description</th>
+                <th class="">Prix</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for product in products %}
-            {{ product.name }}
-            <br>
+            <tr class="row">
+                <td>
+                    <img src="{{ product.photo }}" alt="">
+                </td>
+                <td>
+                    <a href="/products/{{ product.id }}">{{ product.name }}</a>
+                </td>
+                <td>
+                    {{ product.description }}
+                </td>
+                <td>
+                    {{ product.price }}
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableau').DataTable({
+            searching: true,
+            language: {
+                search: "Rechercher :",
+                lengthMenu: "Afficher _MENU_ éléments par page",
+                info: "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
+                paginate: {
+                    first: "Premier",
+                    last: "Dernier",
+                    next: "Suivant",
+                    previous: "Précédent"
+                }
+            },
+        });
+    });
+</script>
 {% endblock %}

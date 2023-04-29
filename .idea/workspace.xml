@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efa23f0b-9799-4e94-859d-2f72465bbc78" name="Changes" comment="Adding classes and migration files ; when pulled use php bin/console d:m:m" />
+    <list default="true" id="efa23f0b-9799-4e94-859d-2f72465bbc78" name="Changes" comment="Adding classes and migration files ; when pulled use php bin/console d:m:m">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -281,6 +288,9 @@
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/mailer" />
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/runtime" />
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/easycorp/easyadmin-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="2OHWKXpKq0akDeIHiOMC92xWFKL" />
@@ -294,14 +304,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/Augustrain/Bureau/epitech/T-WEB-600-LIL-6-1-ecommerce-lucas.redjaimia",
+    "git-widget-placeholder": "vasy-git-la",
+    "last_opened_file_path": "/home/Augustrain/Bureau/epitech/T-WEB-600-LIL-6-1-ecommerce-lucas.redjaimia/ecommerce",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
+    "vcs.patch.to.clipboard": "true",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -311,7 +322,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ecommerce" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/ecommerce" />
     </key>
   </component>
@@ -335,6 +350,9 @@
       <workItem from="1681810848064" duration="1184000" />
       <workItem from="1681812038793" duration="1981000" />
       <workItem from="1682323339806" duration="14394000" />
+      <workItem from="1682688648819" duration="105000" />
+      <workItem from="1682691272956" duration="24000" />
+      <workItem from="1682691747781" duration="14085000" />
     </task>
     <task id="LOCAL-00001" summary="Adding classes and migration files ; when pulled use php bin/console d:m:m">
       <created>1681809134444</created>

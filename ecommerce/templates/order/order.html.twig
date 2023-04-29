@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour{% endblock %}
+
+{% block body %}
+    {% for order in orders %}
+        Commande : {{ order.id }}
+        {% for product in order.products %}
+            <h1>{{ product.name }}</h1>
+            <h2>{{ product.description }}</h2>
+            <span>{{ product.price }}</span>
+        {% endfor %}
+        {{ order.totalPrice }}
+        <a href="{{ url('app_user_orders_id', {'id': order.id}) }}">Details</a>
+
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour{% endblock %}
+
+{% block body %}
+    {% for product in order.products %}
+        <h1>{{ product.name }}</h1>
+        <h2>{{ product.description }}</h2>
+        <span>{{ product.price }}</span>
+        <form action="{{ path('app_add_remove_from_cart', {'id': product.id}) }}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <button type="submit">Remove from cart</button>
+        </form>
+    {% endfor %}
+    <a href="{{ url('app_cart_validate')}}">Valider le cart</a>
+
+{% endblock %}

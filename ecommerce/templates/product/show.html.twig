@@ -60,8 +60,19 @@
     </header>
     <div class="example-wrapper">
         <ul>
-            <h1>{{ product.name }}</h1>
-            <h2>{{ product.description }}</h2>
+            {% if form == [] %}
+                <h1>{{ product.name }}</h1>
+                <h2>{{ product.description }}</h2>
+                <span>{{ product.price }}</span>
+            {% else %}
+                {{ form_start(form, {'method': 'PUT'}) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.photo) }}
+                    {{ form_row(form.price) }}
+                <button type="submit" class="btn">Change infos !</button>
+                {{ form_end(form) }}
+            {% endif %}
             <img src="{{ product.photo }}" alt="">
         </ul>
     </div>

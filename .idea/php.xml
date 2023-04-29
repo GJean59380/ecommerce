@@ -264,6 +264,9 @@
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/mailer" />
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/runtime" />
       <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/ecommerce/vendor/easycorp/easyadmin-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

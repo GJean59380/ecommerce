@@ -196,6 +196,10 @@
                 </td>
                 <td>
                     {{ product.price }}
+                    <form action="{{ path('app_add_remove_from_cart', {'id': product.id}) }}" method="POST">
+                        <button type="submit">Add to cart</button>
+                    </form>
+
                 </td>
             </tr>
         {% endfor %}

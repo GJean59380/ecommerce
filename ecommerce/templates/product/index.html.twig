@@ -23,10 +23,10 @@
     h1 {
         position: absolute;
         left: 20px;
-        top: 10px;
+        top: 15px;
         z-index: 999;
         color: white;
-        font-size: 24px;
+        font-size: 18px;
     }
     header {
         position: fixed;
@@ -35,7 +35,7 @@
     }
     .navbar {
         width: 100%;
-        background-color: #78a0b3;
+        background-color: gray;
     }
     .navbar ul {
         width: 100%;
@@ -72,6 +72,7 @@
     #tableau {
         width: 100%;
         padding: 0 40px;
+        padding-bottom: 30px;
     }
     tbody {
         width: 100%;
@@ -83,13 +84,90 @@
         display: flex;
         justify-content: flex-end;
     }
+    #tableau_paginate {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        background-color: gray;
+        padding: 5px;
+        border-radius: 50px;
+        color: white;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+    #tableau_paginate>span {
+        display: flex;
+        align-items: center;
+    }
+    #tableau_paginate span a {
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all .3s;
+    }
+    #tableau_previous, #tableau_next {
+        padding: 10px;
+        margin: 0 10px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all .3s;
+    }
+    #tableau_paginate span a:hover {
+        background-color: white;
+        color: black;
+    }
+    #tableau_previous:hover , #tableau_next:hover{
+        background-color: white;
+        color: black;
+    }
+    #tableau_info {
+        display: none;
+    }
+    .current {
+        background-color: white;
+        color: black;
+    }
+    #tableau_filter {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+    }
+    #tableau_filter label {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 50%;
+    }
+    #tableau_filter label input {
+        padding: 10px;
+        border: none;
+        background-color: gray;
+        width: 100%;
+        border-radius: 25px;
+        color: white;
+    }
+    #tableau_length {
+        display: none;
+    }
+    .link {
+        transition: all .2s ease-in-out;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .link:hover {
+        background-color: gray;
+        color: white;
+    }
 </style>
 <header>
     <div class="navbar">
         <ul>
             <h1>Hello {{ controller_name }}!</h1>
             <li><a href="">HOME</a></li>
-            <li><a href="/products">Products</a></li>
+            <li><a href="/api/products">Products</a></li>
             <li><a href="">Profile</a></li>
         </ul>
     </div>
@@ -111,7 +189,7 @@
                     <img src="{{ product.photo }}" alt="">
                 </td>
                 <td>
-                    <a href="/products/{{ product.id }}">{{ product.name }}</a>
+                    <a href="/api/products/{{ product.id }}" class="link">{{ product.name }}</a>
                 </td>
                 <td>
                     {{ product.description }}
@@ -131,14 +209,14 @@
         $('#tableau').DataTable({
             searching: true,
             language: {
-                search: "Rechercher :",
+                search: "Recherche : ",
                 lengthMenu: "Afficher _MENU_ éléments par page",
                 info: "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
                 paginate: {
                     first: "Premier",
                     last: "Dernier",
-                    next: "Suivant",
-                    previous: "Précédent"
+                    next: "➡️",
+                    previous: "⬅️"
                 }
             },
         });

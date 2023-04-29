@@ -23,7 +23,7 @@
         }
         .navbar {
             width: 100%;
-            background-color: #78a0b3;
+            background-color: gray;
         }
         .navbar ul {
             width: 100%;
@@ -39,12 +39,21 @@
             color: white;
             line-height: 50px;
         }
+        .example-wrapper ul {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .example-wrapper ul h1 {
+            width: 100%;
+        }
     </style>
     <header>
         <div class="navbar">
             <ul>
                 <li><a href="">HOME</a></li>
-                <li><a href="/products">Products</a></li>
+                <li><a href="/api/products">Products</a></li>
                 <li><a href="">Profile</a></li>
             </ul>
         </div>
@@ -52,6 +61,7 @@
     <div class="example-wrapper">
         <ul>
             <h1>{{ product.name }}</h1>
+            <h2>{{ product.description }}</h2>
             <img src="{{ product.photo }}" alt="">
         </ul>
     </div>

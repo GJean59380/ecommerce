@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Datetime;
+use App\Entity\Order;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,6 +24,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -35,6 +38,15 @@ class RegistrationController extends AbstractController
             $user->setEmail($form->get('email')->getData());
 
             $entityManager->persist($user);
+            $entityManager->flush();
+
+            $order = new Order();
+            $order->setTotalPrice(0);
+            $date = new DateTime();
+            $order->setCreationDate($date);
+            $order->setUserId($user);
+            $order->setStatus(0);
+            $entityManager->persist($order);
             $entityManager->flush();
             // do anything else you need here, like send an email
 

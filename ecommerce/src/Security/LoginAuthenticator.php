@@ -43,7 +43,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse("https://127.0.0.1:8000/api/products");
+            $baseUrl = $request->getSchemeAndHttpHost();
+            return new RedirectResponse("$baseUrl/api/products");
         }
 
         // For example:

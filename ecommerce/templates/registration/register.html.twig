@@ -3,18 +3,95 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <style>
+        main {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .title {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .subscribe {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            border-radius: 20px;
+            padding: 30px 20px;
+            -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.32)inset;
+            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.32)inset;
+            background-color: #f0f2f5;
+        }
+        .subscribe form {
+            width: 80%;
+        }
+        .subscribe form div{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .subscribe form div input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid gray;
+            background-color: gray;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .btn {
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: gray;
+            color: white;
+            text-transform: uppercase;
+            transition: All .3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: black;
+        }
+        .confirm {
+            width: 100%;
+        }
+        .confirm div {
+            display: flex!important;
+            justify-content: flex-start!important;
+            flex-wrap: nowrap!important;
+            width: 100%!important;
+        }
+        .confirm div label {
+            width: 20%!important;
+        }
+        .confirm div input {
+            width: auto!important;
+        }
+    </style>
+    <main>
+        <div class="title">
+            <h1>S'inscrire</h1>
+        </div>
+        <div class="subscribe">
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.login) }}
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            <div class="confirm">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.login) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            <button type="submit" class="btn">S'inscire</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </main>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+
 {% endblock %}

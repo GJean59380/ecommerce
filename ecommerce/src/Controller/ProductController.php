@@ -35,11 +35,14 @@ class ProductController extends AbstractController
 
             }
         }
+        $form = $this->createForm(UpdateProductForms::class);
+
         $productRepo = $em->getRepository(Product::class);
         $products = $productRepo->findAll();
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
-            'products' => $products
+            'products' => $products,
+            'form' => $form->createView()
         ]);
     }
 

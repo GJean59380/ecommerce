@@ -3,227 +3,279 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-<style>
-    * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-        font-family: Verdana, sans-serif;
-    }
-    #example-wrapper {
-        width: 100%!important;
-        font: 18px/1.5 sans-serif;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    .example-wrapper {
-        padding-top: 60px;
-    }
-    h1 {
-        position: absolute;
-        left: 20px;
-        top: 15px;
-        z-index: 999;
-        color: white;
-        font-size: 18px;
-    }
-    header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-    .navbar {
-        width: 100%;
-        background-color: gray;
-    }
-    .navbar ul {
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-    }
-    .navbar ul li{
-        list-style-type: none;
-    }
-    .navbar ul li a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: white;
-        line-height: 50px;
-    }
-    .row {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 15px;
-        align-items: center;
-    }
-    .row td {
-        min-width: 25%;
-    }
-    .row a {
-        text-decoration: none;
-        color: black;
-    }
-    .row img {
-        margin-right: 15px;
-        max-width: 100px;
-    }
-    #tableau {
-        width: 100%;
-        padding: 0 40px;
-        padding-bottom: 30px;
-    }
-    tbody {
-        width: 100%;
-    }
-    thead {
-        display: none;
-    }
-    .sorting_1 {
-        display: flex;
-        justify-content: flex-end;
-    }
-    #tableau_paginate {
-        display: flex;
-        justify-content: space-between;
-        width: 50%;
-        background-color: gray;
-        padding: 5px;
-        border-radius: 50px;
-        color: white;
-        margin: auto;
-        margin-bottom: 30px;
-    }
-    #tableau_paginate>span {
-        display: flex;
-        align-items: center;
-    }
-    #tableau_paginate span a {
-        padding: 10px 20px;
-        margin: 0 10px;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: all .3s;
-    }
-    #tableau_previous, #tableau_next {
-        padding: 10px;
-        margin: 0 10px;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: all .3s;
-    }
-    #tableau_paginate span a:hover {
-        background-color: white;
-        color: black;
-    }
-    #tableau_previous:hover , #tableau_next:hover{
-        background-color: white;
-        color: black;
-    }
-    #tableau_info {
-        display: none;
-    }
-    .current {
-        background-color: white;
-        color: black;
-    }
-    #tableau_filter {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 25px;
-    }
-    #tableau_filter label {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 50%;
-    }
-    #tableau_filter label input {
-        padding: 10px;
-        border: none;
-        background-color: gray;
-        width: 100%;
-        border-radius: 25px;
-        color: white;
-    }
-    #tableau_length {
-        display: none;
-    }
-    .link {
-        transition: all .2s ease-in-out;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .link:hover {
-        background-color: gray;
-        color: white;
-    }
-</style>
-<header>
-    <div class="navbar">
-        <ul>
-            <h1>Hello {{ controller_name }}!</h1>
-            <li><a href="">HOME</a></li>
-            <li><a href="/api/products">Products</a></li>
-            <li><a href="">Profile</a></li>
-        </ul>
-    </div>
-</header>
-<div class="example-wrapper">
-    <table id="tableau">
-        <thead>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: Verdana, sans-serif;
+        }
+
+        #example-wrapper {
+            width: 100% !important;
+            font: 18px/1.5 sans-serif;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .example-wrapper {
+            padding-top: 60px;
+        }
+
+        h1 {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            z-index: 999;
+            color: white;
+            font-size: 18px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: gray;
+        }
+
+        .navbar ul {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .navbar ul li {
+            list-style-type: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            line-height: 50px;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .row td {
+            min-width: 25%;
+        }
+
+        .row a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .row img {
+            margin-right: 15px;
+            max-width: 100px;
+        }
+
+        #tableau {
+            width: 100%;
+            padding: 0 40px;
+            padding-bottom: 30px;
+        }
+
+        tbody {
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        .sorting_1 {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        #tableau_paginate {
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            background-color: gray;
+            padding: 5px;
+            border-radius: 50px;
+            color: white;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        #tableau_paginate > span {
+            display: flex;
+            align-items: center;
+        }
+
+        #tableau_paginate span a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all .3s;
+        }
+
+        #tableau_previous, #tableau_next {
+            padding: 10px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all .3s;
+        }
+
+        #tableau_paginate span a:hover {
+            background-color: white;
+            color: black;
+        }
+
+        #tableau_previous:hover, #tableau_next:hover {
+            background-color: white;
+            color: black;
+        }
+
+        #tableau_info {
+            display: none;
+        }
+
+        .current {
+            background-color: white;
+            color: black;
+        }
+
+        #tableau_filter {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        #tableau_filter label {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 50%;
+        }
+
+        #tableau_filter label input {
+            padding: 10px;
+            border: none;
+            background-color: gray;
+            width: 100%;
+            border-radius: 25px;
+            color: white;
+        }
+
+        #tableau_length {
+            display: none;
+        }
+
+        .link {
+            transition: all .2s ease-in-out;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .link:hover {
+            background-color: gray;
+            color: white;
+        }
+
+        .addtocart {
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: gray;
+            color: white;
+            transition: All .3s;
+            cursor: pointer;
+        }
+
+        .addtocart:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+    <header>
+        <div class="navbar">
+            <ul>
+                <h1>Hello {{ controller_name }}!</h1>
+                <li><a href="">HOME</a></li>
+                <li><a href="/api/products">Products</a></li>
+                <li><a href="">Profile</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="example-wrapper">
+        <table id="tableau">
+            <thead>
             <tr>
                 <th class="">Logo</th>
                 <th class="">Nom</th>
                 <th class="">Description</th>
                 <th class="">Prix</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr class="row">
-                <td>
-                    <img src="{{ product.photo }}" alt="">
-                </td>
-                <td>
-                    <a href="/api/products/{{ product.id }}" class="link">{{ product.name }}</a>
-                </td>
-                <td>
-                    {{ product.description }}
-                </td>
-                <td>
-                    {{ product.price }}
-                    <form action="{{ path('app_add_remove_from_cart', {'id': product.id}) }}" method="POST">
-                        <button type="submit">Add to cart</button>
-                    </form>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr class="row">
+                    <td>
+                        <img src="{{ product.photo }}" alt="">
+                    </td>
+                    <td>
+                        <a href="/api/products/{{ product.id }}" class="link">{{ product.name }}</a>
+                    </td>
+                    <td>
+                        {{ product.description }}
+                    </td>
+                    <td>
+                        {{ product.price }}
+                        <form action="{{ path('app_add_remove_from_cart', {'id': product.id}) }}" method="POST">
+                            <button type="submit" class="addtocart">Add to cart</button>
+                        </form>
 
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#tableau').DataTable({
-            searching: true,
-            language: {
-                search: "Recherche : ",
-                lengthMenu: "Afficher _MENU_ éléments par page",
-                info: "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
-                paginate: {
-                    first: "Premier",
-                    last: "Dernier",
-                    next: "➡️",
-                    previous: "⬅️"
-                }
-            },
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.photo) }}
+        {{ form_row(form.price) }}
+        <button type="submit" class="btn">Ajouter le produit là</button>
+        {{ form_end(form) }}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tableau').DataTable({
+                searching: true,
+                language: {
+                    search: "Recherche : ",
+                    lengthMenu: "Afficher _MENU_ éléments par page",
+                    info: "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
+                    paginate: {
+                        first: "Premier",
+                        last: "Dernier",
+                        next: "➡️",
+                        previous: "⬅️"
+                    }
+                },
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}

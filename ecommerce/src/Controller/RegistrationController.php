@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -19,42 +20,40 @@ class RegistrationController extends AbstractController
     #[Route('/api/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        $decoded = json_decode($request->getContent());
+        $email = $decoded->email;
+        $firstname = $decoded->firstname;
+        $lastname = $decoded->lastname;
+        $login = $decoded->login;
+        $password = $decoded->password;
+
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        // encode the plain password
+        $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                $user,
+                $password
+            )
+        );
+        $user->setLogin($login);
+        $user->setFirstname($firstname);
+        $user->setLastname($lastname);
+        $user->setEmail($email);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->persist($user);
+        $entityManager->flush();
 
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            $user->setLogin($form->get('login')->getData());
-            $user->setFirstname($form->get('firstname')->getData());
-            $user->setLastname($form->get('lastname')->getData());
-            $user->setEmail($form->get('email')->getData());
+        $order = new Order();
+        $order->setTotalPrice(0);
+        $date = new DateTime();
+        $order->setCreationDate($date);
+        $order->setUserId($user);
+        $order->setStatus(0);
+        $entityManager->persist($order);
+        $entityManager->flush();
+        // do anything else you need here, like send an email
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+        return new JsonResponse('Registered Successfully', Response::HTTP_OK);
 
-            $order = new Order();
-            $order->setTotalPrice(0);
-            $date = new DateTime();
-            $order->setCreationDate($date);
-            $order->setUserId($user);
-            $order->setStatus(0);
-            $entityManager->persist($order);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('app_user_profile');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
     }
 }
